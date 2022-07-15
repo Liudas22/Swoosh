@@ -10,13 +10,9 @@ class WelcomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_welcome)
 
-        val getStartedBtn = findViewById<Button>(R.id.getStartedBtn)
-
-        getStartedBtn.setOnClickListener {
-
+        findViewById<Button>(R.id.getStartedBtn).setOnClickListener {
             val intent = Intent(this, LeagueActivity::class.java)
             startActivity(intent)
-
         }
     }
 }
