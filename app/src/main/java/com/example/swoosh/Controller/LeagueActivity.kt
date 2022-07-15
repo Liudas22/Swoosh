@@ -1,18 +1,20 @@
 package com.example.swoosh.Controller
 
 import android.content.Intent
+import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import android.widget.Toast
 import android.widget.ToggleButton
-import com.example.swoosh.EXTRA_LEAGUE
+import com.example.swoosh.EXTRA_PLAYER
+import com.example.swoosh.Model.Player
 import com.example.swoosh.R
 
 class LeagueActivity : AppCompatActivity() {
 
-    var selectedLeague = ""
-
+    var player = Player("", "")
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -20,14 +22,14 @@ class LeagueActivity : AppCompatActivity() {
         this.setContentView(R.layout.activity_league)
     }
     fun onLeagueNextClicked(view: View){
-        if(selectedLeague == "")
+        if(player.league == "")
         {
             Toast.makeText(this, "Please select a league", Toast.LENGTH_LONG).show()
         }
         else
         {
             val skillActivity = Intent(this, SkillActivity::class.java)
-            skillActivity.putExtra(EXTRA_LEAGUE, selectedLeague)
+            skillActivity.putExtra(EXTRA_PLAYER, player)
             startActivity(skillActivity)
         }
     }
@@ -38,10 +40,10 @@ class LeagueActivity : AppCompatActivity() {
         val coedleagueBtn = findViewById<ToggleButton>(R.id.coedLeagueBtn)
         coedleagueBtn.isChecked = false
 
-        if(selectedLeague == "")
-            selectedLeague = "men"
+        if(player.league == "" || player.league != "men")
+            player.league = "men"
         else
-            selectedLeague = ""
+            player.league = ""
     }
 
     fun onWomenLeagueClicked(view: View)
@@ -51,10 +53,12 @@ class LeagueActivity : AppCompatActivity() {
         val menLeagueBtn = findViewById<ToggleButton>(R.id.mensLeagueBtn)
         menLeagueBtn.isChecked = false
 
-        if(selectedLeague == "")
-            selectedLeague = "women"
+        if(player.league == "" || player.league != "women")
+        {
+            player.league = "women"
+        }
         else
-            selectedLeague = ""
+            player.league = ""
     }
 
     fun onCoedLeagueClicked(view: View)
@@ -64,9 +68,9 @@ class LeagueActivity : AppCompatActivity() {
         val menLeagueBtn = findViewById<ToggleButton>(R.id.mensLeagueBtn)
         menLeagueBtn.isChecked = false
 
-        if(selectedLeague == "")
-            selectedLeague = "co-ed"
+        if(player.league == "" || player.league != "co-ed")
+            player.league = "co-ed"
         else
-            selectedLeague = ""
+            player.league = ""
     }
 }

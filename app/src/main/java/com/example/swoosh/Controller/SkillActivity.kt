@@ -6,52 +6,50 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import android.widget.ToggleButton
-import com.example.swoosh.EXTRA_LEAGUE
-import com.example.swoosh.EXTRA_SKILL
+import com.example.swoosh.EXTRA_PLAYER
+import com.example.swoosh.Model.Player
 import com.example.swoosh.R
 
 class SkillActivity : AppCompatActivity() {
 
-    var getLeague = ""
-    var skill = ""
+    lateinit var player : Player
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_skill)
 
-        getLeague = intent.getStringExtra(EXTRA_LEAGUE).toString()
+        player = intent.getParcelableExtra(EXTRA_PLAYER)!!
     }
     fun onBeginnerBtnClicked(view: View)
     {
         val ballerBtn = findViewById<ToggleButton>(R.id.ballerBtn)
         ballerBtn.isChecked = false;
-        if(skill == "")
-            skill = "beginner"
+        if(player.skill == "" || player.skill != "beginner")
+            player.skill = "beginner"
         else
-            skill = ""
+            player.skill = ""
     }
 
     fun onBallerBtnClicked(view: View)
     {
         val beginnerBtn = findViewById<ToggleButton>(R.id.beginnerBtn)
         beginnerBtn.isChecked = false;
-        if(skill == "")
-            skill = "baller"
+        if(player.skill == "" || player.skill != "baller")
+            player.skill = "baller"
         else
-            skill = ""
+            player.skill = ""
 
     }
     fun onSkillFinishClicked(view: View)
     {
-        if(skill != "")
+        if(player.skill != "")
         {
             val finishActivity = Intent(this, FinishActivity::class.java)
-            finishActivity.putExtra(EXTRA_LEAGUE, getLeague)
-            finishActivity.putExtra(EXTRA_SKILL, skill)
+            finishActivity.putExtra(EXTRA_PLAYER, player)
             startActivity(finishActivity)
         }
         else
-            Toast.makeText(this, "Please select a skill.", Toast.LENGTH_LONG)
+            Toast.makeText(this, "Please select a skill.", Toast.LENGTH_LONG).show()
 
     }
 }

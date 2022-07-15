@@ -1,24 +1,22 @@
 package com.example.swoosh.Controller
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
-import com.example.swoosh.EXTRA_LEAGUE
-import com.example.swoosh.EXTRA_SKILL
+import com.example.swoosh.EXTRA_PLAYER
+import com.example.swoosh.Model.Player
 import com.example.swoosh.R
 
-var getLeague = ""
-var getSkill = ""
-
 class FinishActivity : AppCompatActivity() {
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_finish)
 
-        getLeague = intent.getStringExtra(EXTRA_LEAGUE).toString()
-        getSkill = intent.getStringExtra(EXTRA_SKILL).toString()
+        val player = intent.getParcelableExtra<Player>(EXTRA_PLAYER)
 
         val searchLeagueTxt = findViewById<TextView>(R.id.searchLeagueTxt)
-        searchLeagueTxt.text = "Looking for $getLeague $getSkill league near you..."
+        searchLeagueTxt.text = "Looking for ${player?.league} ${player?.skill} league near you..."
     }
 }
