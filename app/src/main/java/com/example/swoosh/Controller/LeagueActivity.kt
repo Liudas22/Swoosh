@@ -1,12 +1,13 @@
-package com.example.swoosh
+package com.example.swoosh.Controller
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
 import android.widget.Toast
 import android.widget.ToggleButton
+import com.example.swoosh.EXTRA_LEAGUE
+import com.example.swoosh.R
 
 class LeagueActivity : AppCompatActivity() {
 
@@ -38,7 +39,7 @@ class LeagueActivity : AppCompatActivity() {
         coedleagueBtn.isChecked = false
 
         if(selectedLeague == "")
-            selectedLeague = "Men"
+            selectedLeague = "men"
         else
             selectedLeague = ""
     }
@@ -51,7 +52,7 @@ class LeagueActivity : AppCompatActivity() {
         menLeagueBtn.isChecked = false
 
         if(selectedLeague == "")
-            selectedLeague = "Women"
+            selectedLeague = "women"
         else
             selectedLeague = ""
     }
@@ -64,7 +65,7 @@ class LeagueActivity : AppCompatActivity() {
         menLeagueBtn.isChecked = false
 
         if(selectedLeague == "")
-            selectedLeague = "Co-Ed"
+            selectedLeague = "co-ed"
         else
             selectedLeague = ""
     }
